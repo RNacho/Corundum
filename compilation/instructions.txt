@@ -1,0 +1,2 @@
+To compile the library, inside the 'compilation' folder execute:
+	gcc -Wall -Werror -Wextra -pedantic -pedantic-errors -std=c11 -c ../sources/*; ar rcs Corundum.a *.o; rm *.o
