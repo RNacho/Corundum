@@ -27,6 +27,6 @@ libCorundum.a: readStdin.o splitString.o
 libs: libCorundum.a
 
 clean:
-	rm -f *.o
+	rm -f *.o ${HDR}*.gch
 reset:
-	rm -f executableLinux *.o *.a
+	rm -f executableLinux *.o *.a ${HDR}*.gch
