@@ -1,2 +1,8 @@
-To compile the library, inside the 'compilation' folder execute:
-	gcc -Wall -Werror -Wextra -pedantic -pedantic-errors -std=c11 -c ../sources/*; ar rcs Corundum.a *.o; rm *.o
+To compile simply run:
+	make all
+The static library will be the file named:
+	libCorundum.a
+To clean residual compilation files run:
+	make clean
+To clean all compiled files (including libCorundum.a) run:
+	make reset

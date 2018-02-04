@@ -1,37 +1,41 @@
 #include "../headers/splitString.h"
 
-#define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM " \t\r\n\a"
+char **splitStringWith(char *input, char *delimiter)
+{
+	char *line = calloc(1, sizeof(input));
+	int bufsize = 1, position = 0;
+	char **tokens = calloc(bufsize, sizeof(char *));
+	char *token;
+
+	memcpy(line, input, strlen(input)+1);
+
+	if (!tokens || !line) {
+		fprintf(stderr, "\nAllocation failure in splitString.c\n");
+		exit(EXIT_FAILURE);
+	}
+
+	token = strtok(line, delimiter);
+	while (token != NULL) {
+		tokens[position] = token;
+		position++;
+
+		if (position >= bufsize) {
+			bufsize += 1;
+			tokens = realloc(tokens, bufsize * sizeof(char *));
+			if (!tokens) {
+				fprintf(stderr,
+					"\nAllocation failure in splitString.c\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		token = strtok(NULL, delimiter);
+	}
+	tokens[position] = NULL;
+	return tokens;
+}
+
 char **splitString(char *input)
 {
-  char *line = malloc(sizeof(input));
-  int bufsize = LSH_TOK_BUFSIZE, position = 0;
-  char **tokens = malloc(bufsize * sizeof(char*));
-  char *token;
-
-  memcpy(line,input,strlen(input)+1);
-
-  if (!tokens) {
-    fprintf(stderr, "lsh: allocation error\n");
-    exit(EXIT_FAILURE);
-  }
-
-  token = strtok(line, LSH_TOK_DELIM);
-  while (token != NULL) {
-    tokens[position] = token;
-    position++;
-
-    if (position >= bufsize) {
-      bufsize += LSH_TOK_BUFSIZE;
-      tokens = realloc(tokens, bufsize * sizeof(char*));
-      if (!tokens) {
-        fprintf(stderr, "lsh: allocation error\n");
-        exit(EXIT_FAILURE);
-      }
-    }
-
-    token = strtok(NULL, LSH_TOK_DELIM);
-  }
-  tokens[position] = NULL;
-  return tokens;
+	return splitStringWith(input, " \t\r\n\a");
 }

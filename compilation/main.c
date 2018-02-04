@@ -12,16 +12,18 @@ int main(void)
 	puts("Start");
 	puts("");
 
-	printf("Reading input: ");
+	puts("Receiving input: ");
 	char *stringStdin = readStdin();
-
-	char **stringTokens = splitString(stringStdin);
-	int i = 0;
 
 	puts("");
 
 	puts("Read with readStdin: ");
 	puts(stringStdin);
+
+	int i = 0;
+	char **stringTokens = splitString(stringStdin);
+	
+	char **stringTokensWith = splitStringWith(stringStdin, "d");
 
 	puts("");
 	puts("Tokenized with splitString:");
@@ -31,6 +33,13 @@ int main(void)
 		puts(stringTokens[i]);
 	}
 
+	puts("");
+	puts("Tokenized with splitStringWith(\"d\"):");
+
+	for(i=0; stringTokensWith[i] != NULL; i++){
+		printf("Element number [%d]: ", i);
+		puts(stringTokensWith[i]);
+	}
 	free(stringStdin);
 
 	puts("");
