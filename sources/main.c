@@ -4,7 +4,7 @@
  * at readme, do not compile this main
  */
 
-#include "../headers/master.h"
+#include "../headers/main.h"
 
 int main(void)
 {

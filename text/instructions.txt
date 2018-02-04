@@ -1,0 +1,12 @@
+To compile simply run:
+	make library
+If you want to test the library compile with:
+	make all
+Then for simple tests run:
+	./executableLinux
+The static library will be the file named:
+	libCorundum.a
+To clean residual compilation files run:
+	make clean
+To clean all compiled files (including libCorundum.a and executableLinux) run:
+	make reset
