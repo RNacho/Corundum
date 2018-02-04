@@ -1,3 +1,13 @@
+/* Usage of this function
+ *
+ * char *stringStdin = readStdin();
+ *
+ * ... use of the stringStdin variable ...
+ *
+ * free(stringStdin);
+ */
+
+
 #include "../headers/readStdin.h"
 
 char *readStdin(void)
