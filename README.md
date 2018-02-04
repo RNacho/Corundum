@@ -1,4 +1,1 @@
 C library for Ruby-like syntax
-
-
-// MITODO AGREGAR INSTRUCCIONES DE COMPILADO Y USO
