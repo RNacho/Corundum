@@ -1,0 +1,3 @@
+- Decide on documentation (Doxygen maybe?)
+- Decide on repository structure
+- Compile and test it as both static and dynamic
