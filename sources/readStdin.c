@@ -24,5 +24,5 @@ char *readStdin(void)
 		strcat(input, buffer);
 	} while (bufferLength == 1 && buffer[0] != '\n');
 
-	return input;
+	return strtok(input,"\n");
 }

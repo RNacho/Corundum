@@ -8,10 +8,34 @@
 
 int main(void)
 {
+	puts("");
+	puts("Start");
+	puts("");
+
+	printf("Reading input: ");
 	char *stringStdin = readStdin();
 
-	printf("Read: %s", stringStdin);
+	char **stringTokens = splitString(stringStdin);
+	int i = 0;
+
+	puts("");
+
+	puts("Read with readStdin: ");
+	puts(stringStdin);
+
+	puts("");
+	puts("Tokenized with splitString:");
+
+	for(i=0; stringTokens[i] != NULL; i++){
+		printf("Element number [%d]: ", i);
+		puts(stringTokens[i]);
+	}
+
 	free(stringStdin);
+
+	puts("");
+	puts("End");
+	puts("");
 
 	return EXIT_SUCCESS;
 }
