@@ -7,20 +7,20 @@ HDR = $(patsubst sources/%.c, headers/%.h, $(SRC))
 OBJ = $(patsubst sources/%.c, objects/%.o, $(SRC))
 
 
-all: executableLinux libCorundum.a
+all: compilation/executableLinux compilation/libCorundum.a
 library: libCorundum.a
 
 
-executableLinux: objects/main.o libCorundum.a
+compilation/executableLinux: objects/main.o compilation/libCorundum.a
 	${CC} ${FLG} -o compilation/executableLinux objects/main.o -Lcompilation -lCorundum
 
-main.o: sources/main.c headers/main.h
-	${CC} ${FLG} -c main.c -o objects/main.o
+objects/main.o: sources/main.c headers/Corundum.h
+	${CC} ${FLG} -c sources/main.c -o objects/main.o
 
 objects/%.o: sources/%.c headers/%.h
 	$(CC) $(FLG) -c $< -o $@
 
-libCorundum.a: ${OBJ}
+compilation/libCorundum.a: ${OBJ}
 	${AR} compilation/libCorundum.a ${OBJ}
 
 

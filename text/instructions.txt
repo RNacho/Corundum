@@ -4,8 +4,14 @@ If you want to test the library compile with:
 	make all
 Then for simple tests run:
 	./executableLinux
+
 The static library will be the file named:
 	libCorundum.a
+To include the library in your project use:
+	#include "/path/to/file/Corundum.h"
+And compile with:
+	cc yourFile.c -L/path/to/library -lCorundum
+
 To clean residual compilation files run:
 	make clean
 To clean all compiled files (including libCorundum.a and executableLinux) run:

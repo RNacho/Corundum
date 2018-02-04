@@ -1,3 +1,4 @@
 - Decide on documentation (Doxygen maybe?)
 - Decide on repository structure
 - Compile and test it as both static and dynamic
+- Add instructions to add the library to default path (ie. to use it with <> in include)

@@ -4,7 +4,7 @@
  * at readme, do not compile this main
  */
 
-#include "../headers/main.h"
+#include "../headers/Corundum.h"
 
 int main(void)
 {
