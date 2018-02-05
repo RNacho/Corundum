@@ -8,7 +8,8 @@ Then for simple tests run:
 The static library will be the file named:
 	libCorundum.a
 To include the library in your project use:
-	#include "/path/to/file/Corundum.h"
+	#include "/path/to/folder/headers/Corundum.h"
+	IMPORTANT; You must have the other headers as well //Maybe change this?
 And compile with:
 	cc yourFile.c -L/path/to/library -lCorundum
 

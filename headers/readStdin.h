@@ -5,6 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *readStdin(void);
+void readStdin(char **output);
 
 #endif // readStdinHeader

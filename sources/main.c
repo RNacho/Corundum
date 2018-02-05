@@ -13,7 +13,8 @@ int main(void)
 	puts("");
 
 	puts("Receiving input: ");
-	char *stringStdin = readStdin();
+	char *stringStdin = NULL;
+	readStdin(&stringStdin);
 
 	puts("");
 
@@ -21,9 +22,11 @@ int main(void)
 	puts(stringStdin);
 
 	int i = 0;
-	char **stringTokens = splitString(stringStdin);
+	char **stringTokens = calloc(1,sizeof(char *));
+	splitString(&stringTokens, stringStdin);
 	
-	char **stringTokensWith = splitStringWith(stringStdin, "d");
+	char **stringTokensWith = calloc(1,sizeof(char *));
+	splitStringWith(&stringTokensWith, stringStdin, "d");
 
 	puts("");
 	puts("Tokenized with splitString:");

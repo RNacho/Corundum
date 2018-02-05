@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-char **splitString(char *input);
-char **splitStringWith(char *input, char *delimiter);
+void splitString(char ***output, char *input);
+void splitStringWith(char ***output, char *input, char *delimiter);
 
 #endif // splitStringHeader
