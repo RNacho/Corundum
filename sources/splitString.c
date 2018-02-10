@@ -1,26 +1,49 @@
 #include "../headers/splitString.h"
 
-void splitStringWith(char ***output, char *input, char *delimiter)
+size_t splitStringWith(char **input, char ***output, char **delimiter)
 {
-	int position = 0;
-	char *line = calloc(strlen(input)+1, sizeof(char));
-	char *token = NULL;
+	size_t element = 0;
+	size_t index = 0;
+	size_t i = 0;
+	size_t j = 0;
+	size_t k = 0;
+	bool found = 0;
+	bool repeated = 0;
+	bool written = 0;
+	size_t length = strlen(*input);
 
-	memcpy(line, input, strlen(input)+1);
+	for (i = 0; i < length; i++) {
+		found = 0;
+		repeated = 0;
 
-	token = strtok(line, delimiter);
+		for (j = 0; j < length; j++)
+			if (*((*input) + i) == *((*delimiter) + j)) {
+				found = true;
+				for (k = 0; k < length; k++)
+					if (*((*input) + i + 1) == *((*delimiter) + k))
+						repeated = true;
+			}
 
-	for(position = 0; token != NULL; position++) {
-		**(output + position) = token;
-		*output = realloc(*output, (position + 1) * sizeof(char *));
-		token = strtok(NULL, delimiter);
+		if (found && !repeated && written && (i + 1) < length) {
+			++element;
+			index = 0;
+			(*output) = realloc((*output), (element + 1) * sizeof(char *));
+		}
+
+		if (!found) {
+			*((*output) + element) = realloc((*((*output) + element)), (index + 1) * sizeof(char));
+			*(*((*output) + element) + index) = *((*input) + i);
+			++index;
+			written = true;
+		}
 	}
-	**(output + position) = NULL;
 
-	free(line);
+	return (element + 1);
 }
 
-void splitString(char ***output, char *input)
+size_t splitString(char **input, char ***output)
 {
-	splitStringWith(output, input, " \t\r\n\a");
+	char *delimiter = " \r\a\n\t";
+
+	return splitStringWith(input, output, &delimiter);
 }

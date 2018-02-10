@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
-void splitString(char ***output, char *input);
-void splitStringWith(char ***output, char *input, char *delimiter);
+size_t splitString(char **input, char ***output);
+size_t splitStringWith(char **input, char ***output, char **delimiter);
 
 #endif // splitStringHeader

@@ -8,46 +8,45 @@
 
 int main(void)
 {
-	puts("");
-	puts("Start");
-	puts("");
+	size_t i = 0;
+	size_t argumentCount = 0;
+	//size_t argumentCountWith = 0;
+	char *input = NULL;
+	//char *delimiter = NULL;
+	char **arguments = NULL;
+	//char **argumentsWith = NULL;
 
-	puts("Receiving input: ");
-	char *stringStdin = NULL;
-	readStdin(&stringStdin);
+	input = calloc(1, sizeof(char));
+	arguments = calloc(1, sizeof(char *));
+	*arguments = calloc(1, sizeof(char));
+	//argumentsWith = calloc(1, sizeof(char *));
+	//*argumentsWith = calloc(1, sizeof(char));
 
-	puts("");
+	readStdin(&input);
+	puts("Este es el input:");
+	puts(input);
 
-	puts("Read with readStdin: ");
-	puts(stringStdin);
+	argumentCount = splitString(&input, &arguments);
+	printf("Este es el argcount nuevo: %ld\n", argumentCount);
 
-	int i = 0;
-	char **stringTokens = calloc(1,sizeof(char *));
-	splitString(&stringTokens, stringStdin);
+	puts("Estos son los argumentos nuevos:");
+	for (i = 0; i < argumentCount; i++)
+		puts(*(arguments + i));
+
+
+	for (i = 0; i < argumentCount; i++)
+		memset(*(arguments + i), '\0', strlen(*(arguments + i)));
+
+	free(input);
+	input = NULL;
 	
-	char **stringTokensWith = calloc(1,sizeof(char *));
-	splitStringWith(&stringTokensWith, stringStdin, "d");
-
-	puts("");
-	puts("Tokenized with splitString:");
-
-	for(i=0; stringTokens[i] != NULL; i++){
-		printf("Element number [%d]: ", i);
-		puts(stringTokens[i]);
+	for (i = 0; i < argumentCount; i++) {
+		free(*(arguments + i));
+		*(arguments + i) = NULL;
 	}
-
-	puts("");
-	puts("Tokenized with splitStringWith(\"d\"):");
-
-	for(i=0; stringTokensWith[i] != NULL; i++){
-		printf("Element number [%d]: ", i);
-		puts(stringTokensWith[i]);
-	}
-	free(stringStdin);
-
-	puts("");
-	puts("End");
-	puts("");
+	
+	free(arguments);
+	arguments = NULL;
 
 	return EXIT_SUCCESS;
 }
